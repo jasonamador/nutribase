@@ -1,1 +1,3 @@
 # nutribase
+
+database: nutribase
