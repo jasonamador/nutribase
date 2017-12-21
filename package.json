@@ -4,13 +4,12 @@
   "description": "database: nutribase",
   "main": "index.js",
   "dependencies": {
-    "bcrypt": "^1.0.3",
+    "bcrypt-as-promised": "^1.1.0",
     "body-parser": "^1.18.2",
     "ejs": "^2.5.7",
     "express": "^4.16.2",
     "express-session": "^1.15.6",
     "knex": "^0.14.2",
-    "materialize": "^1.0.0",
     "morgan": "^1.9.0",
     "morgan-body": "^2.0.2",
     "pg": "^7.4.0"
