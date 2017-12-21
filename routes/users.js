@@ -6,14 +6,41 @@ const express = require('express');
 const router = express.Router();
 const session = require('express-session');
 
-router.use(bodyParser.raw());
+router.use(bodyParser.urlencoded());
 
+// login
 router.get('/login', (req, res) => {
   res.render('login', {});
 });
 
 router.post('/login', (req, res) => {
+  knex('users').where('email', req.body.email).first()
+  .then((user) => {
+    bcrypt.compare(req.body.password, user.password)
+    .then(() => {
+      session.user = user;
+      res.send(session.user);
+    })
+    .catch(() => {
+      res.redirect('/users/login');
+    });
+  });
+});
+
+//signup
+router.get('/signup', (req, res) => {
+  res.render('login', {});
+});
+
+router.post('/signup', (req, res) => {
   res.send(req.body);
 });
+
+router.post('/logout', (req, res) => {
+  delete session.user;
+  res.redirect('/users/login');
+});
+
+//profile
 
 module.exports = router;
