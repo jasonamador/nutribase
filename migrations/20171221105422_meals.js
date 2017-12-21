@@ -4,7 +4,7 @@ exports.up = function(knex, Promise) {
     table.increments('id');
     table.integer('user_id');
     table.string('label');
-    table.timestamp('date_time');
+    table.timestamp('date_time').defaultTo(knex.fn.now());
   });
 };
 
