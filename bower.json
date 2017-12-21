@@ -1,0 +1,20 @@
+{
+  "name": "nutribase",
+  "description": "database: nutribase",
+  "main": "index.js",
+  "authors": [
+    "Jason Amador <jason.amador@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/jasonamador/nutribase",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "materialize": "^0.100.2"
+  }
+}
