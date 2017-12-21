@@ -1,13 +1,19 @@
 const config = require('../knexfile')[process.env.ENVIRONMENT || 'development'];
 const knex = require('knex')(config);
 const bcrypt = require('bcrypt-as-promised');
-const.bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
 const express = require('express');
 const router = express.Router();
 const session = require('express-session');
 
-router.use(bodyParser.json());
+router.use(bodyParser.raw());
 
 router.get('/login', (req, res) => {
-  res.send('LOGIN');
+  res.render('login', {});
 });
+
+router.post('/login', (req, res) => {
+  res.send(req.body);
+});
+
+module.exports = router;
