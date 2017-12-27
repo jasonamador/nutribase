@@ -27,7 +27,7 @@ router.post('/login', (req, res) => {
   });
 });
 
-//signup
+// signup
 router.get('/signup', (req, res) => {
   res.render('login', {});
 });
@@ -36,11 +36,12 @@ router.post('/signup', (req, res) => {
   res.send(req.body);
 });
 
+// logout
 router.post('/logout', (req, res) => {
   delete session.user;
   res.redirect('/users/login');
 });
 
-//profile
+// profile
 
 module.exports = router;
