@@ -7,5 +7,4 @@ NutriBase is being created to help people set nutritional goals, easily track th
   - password
   - nickname ?
   - goals
-    * <each metric> <each metric polarity>
-      - eg: name: fat, polarity: true, goal: 10, unit: 'g'
+    * name: fat, polarity: true (true = goal, false = limit)
