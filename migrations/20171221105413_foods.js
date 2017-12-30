@@ -2,7 +2,6 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTableIfNotExists('foods', (table) =>{
     table.increments('id');
-    table.integer('user_id');
     table.varchar('name');
     table.string('group');
     table.integer('calories');
