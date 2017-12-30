@@ -4,18 +4,22 @@ exports.up = function(knex, Promise) {
     table.string('email').notNullable();
     table.string('name').notNullable();
     table.string('password').notNullable();
-    table.string('sex');
-    table.integer('age');
-    table.integer('height');
     table.timestamp('member_since').defaultTo(knex.fn.now());
     table.timestamp('last_login').defaultTo(knex.fn.now());
     table.integer('calories');
+    table.boolean('calorieGoal').defaultTo(false);
     table.integer('sugar');
+    table.boolean('sugarGoal').defaultTo(false);
     table.integer('fat');
+    table.boolean('fatGoal').defaultTo(false);
     table.integer('protein');
+    table.boolean('proteinGoal').defaultTo(false);
     table.integer('carbohydrates');
+    table.boolean('carbohydratesGoal').defaultTo(false);
     table.integer('fiber');
+    table.boolean('fiberGoal').defaultTo(false);
     table.integer('bad_fat');
+    table.boolean('bad_fatGoal').defaultTo(false);
   });
 };
 
