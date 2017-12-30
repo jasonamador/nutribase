@@ -10,7 +10,7 @@ router.use(bodyParser.urlencoded());
 
 // login
 router.get('/login', (req, res) => {
-  res.render('login', {});
+  res.render('login-signup', {});
 });
 
 router.post('/login', (req, res) => {
@@ -27,15 +27,12 @@ router.post('/login', (req, res) => {
   });
 });
 
-//signup
-router.get('/signup', (req, res) => {
-  res.render('login', {});
-});
-
+// signup
 router.post('/signup', (req, res) => {
   res.send(req.body);
 });
 
+// logout
 router.post('/logout', (req, res) => {
   delete session.user;
   res.redirect('/users/login');
