@@ -28,6 +28,13 @@ router.post('/login', (req, res) => {
 });
 
 // signup
+<<<<<<< HEAD
+=======
+router.get('/signup', (req, res) => {
+  res.render('login', {});
+});
+
+>>>>>>> jason
 router.post('/signup', (req, res) => {
   res.send(req.body);
 });
@@ -38,6 +45,6 @@ router.post('/logout', (req, res) => {
   res.redirect('/users/login');
 });
 
-//profile
+// profile
 
 module.exports = router;
