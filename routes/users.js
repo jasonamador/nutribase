@@ -14,9 +14,9 @@ router.get('/login', (req, res) => {
 });
 
 router.post('/login', (req, res) => {
-  knex('users').where('email', req.body.email).first()
+  knex('users').where('email', req.body.loginEmail).first()
   .then((user) => {
-    bcrypt.compare(req.body.password, user.password)
+    bcrypt.compare(req.body.loginPassword, user.password)
     .then(() => {
       session.user = user;
       res.send(session.user);
@@ -28,13 +28,6 @@ router.post('/login', (req, res) => {
 });
 
 // signup
-<<<<<<< HEAD
-=======
-router.get('/signup', (req, res) => {
-  res.render('login', {});
-});
-
->>>>>>> jason
 router.post('/signup', (req, res) => {
   res.send(req.body);
 });
