@@ -9,7 +9,16 @@ const session = require('express-session');
 router.use(bodyParser.urlencoded());
 
 router.get('/', (req, res) => {
-  res.render('dashboard');
+  if (req.session.user) {
+    knex('meals').where('user_id', req.session.user.id)
+    .join('foods_meals', 'meals.id', 'foods_meals.meal_id')
+    .leftJoin('foods', 'foods_meals.food_id', 'foods.id')
+    .then((meals) => {
+      res.send(meals);
+    });
+  } else {
+    res.redirect('/login');
+  }
 });
 
 

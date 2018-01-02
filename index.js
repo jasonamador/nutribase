@@ -17,10 +17,14 @@ app.use(bodyParser.json());
 
 app.use(session({
   secret: 'supersecret',
+  resave: false,
+  saveUnitialized: true,
+  cookie: {
+    secure: false
+  }
 }));
 
 let foodRouter = require('./routes/foods');
-
 
 app.use('/users', users);
 
@@ -32,7 +36,7 @@ app.use('/foods', foodRouter);
 app.use('/dashboard', dashboard);
 
 app.use('/', (req, res) => {
-  if (session.user) {
+  if (req.session.user) {
     res.redirect('/dashboard');
   } else {
     res.redirect('/users/login');
