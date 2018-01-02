@@ -36,14 +36,13 @@ router.post('/signup', (req, res) => {
   bcrypt.hash(req.body.password, salt)
   .then((hashedPassword) => {
     let user = {
-      name: res.body.name,
-      email: res.body.email,
+      email: req.body.email,
       password: hashedPassword,
     };
-    knex('users').insert(req.body)
+    knex('users').insert(user)
     .then((user) => {
-      session.user =
-      redirect()
+      session.user = user;
+      res.redirect('/users/profile');
     });
   })
   .catch((e) => {
@@ -60,5 +59,9 @@ router.post('/logout', (req, res) => {
 });
 
 // profile
+router.get('/profile', (req, res) => {
+  res.send('profile');
+
+});
 
 module.exports = router;
