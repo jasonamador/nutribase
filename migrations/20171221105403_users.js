@@ -2,7 +2,7 @@ exports.up = function(knex, Promise) {
   return knex.schema.createTableIfNotExists('users', (table) => {
     table.increments('id');
     table.string('email').notNullable();
-    table.string('name').notNullable();
+    table.string('name').defaultTo('User Name');
     table.string('password').notNullable();
     table.timestamp('member_since').defaultTo(knex.fn.now());
     table.timestamp('last_login').defaultTo(knex.fn.now());

@@ -6,6 +6,9 @@ const express = require('express');
 const router = express.Router();
 const session = require('express-session');
 
+// put in environment variable!!
+const salt = 9;
+
 router.use(bodyParser.urlencoded());
 
 // login
@@ -19,7 +22,7 @@ router.post('/login', (req, res) => {
     bcrypt.compare(req.body.loginPassword, user.password)
     .then(() => {
       session.user = user;
-      res.send(session.user);
+      res.redirect('/dashboard');
     })
     .catch(() => {
       res.redirect('/users/login');
@@ -29,7 +32,24 @@ router.post('/login', (req, res) => {
 
 // signup
 router.post('/signup', (req, res) => {
-  res.send(req.body);
+  // TODO: some validation
+  bcrypt.hash(req.body.signupPassword, salt)
+  .then((hashedPassword) => {
+    let user = {
+      email: req.body.email,
+      password: hashedPassword,
+    };
+    knex('users').insert(user)
+    .then((user) => {
+      session.user = user;
+      res.redirect('/users/profile');
+    });
+  })
+  .catch((e) => {
+    // TODO: something better
+    console.error(e);
+    res.sendStatus(500);
+  });
 });
 
 // logout
@@ -39,5 +59,8 @@ router.post('/logout', (req, res) => {
 });
 
 // profile
+router.get('/profile', (req, res) => {
+  res.render('profile');
+});
 
 module.exports = router;
