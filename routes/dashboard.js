@@ -8,4 +8,9 @@ const session = require('express-session');
 
 router.use(bodyParser.urlencoded());
 
-// login
+router.get('/', (req, res) => {
+  res.render('dashboard');
+});
+
+
+module.exports = router;

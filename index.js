@@ -2,8 +2,11 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const session = require('express-session');
 const bodyParser = require('body-parser');
-const users = require('./routes/users');
 const morganBody = require('morgan-body');
+
+// routes
+const users = require('./routes/users');
+const dashboard = require('./routes/dashboard');
 
 const PORT = process.env.PORT || 8000;
 const app = express();
@@ -17,6 +20,8 @@ app.use(session({
 }));
 
 app.use('/users', users);
+
+app.use('/dashboard', dashboard);
 
 app.use('/', (req, res) => {
   if (session.user) {

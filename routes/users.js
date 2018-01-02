@@ -22,7 +22,7 @@ router.post('/login', (req, res) => {
     bcrypt.compare(req.body.loginPassword, user.password)
     .then(() => {
       session.user = user;
-      res.send(session.user);
+      res.redirect('/dashboard');
     })
     .catch(() => {
       res.redirect('/users/login');
@@ -33,7 +33,7 @@ router.post('/login', (req, res) => {
 // signup
 router.post('/signup', (req, res) => {
   // TODO: some validation
-  bcrypt.hash(req.body.password, salt)
+  bcrypt.hash(req.body.signupPassword, salt)
   .then((hashedPassword) => {
     let user = {
       email: req.body.email,
@@ -60,8 +60,7 @@ router.post('/logout', (req, res) => {
 
 // profile
 router.get('/profile', (req, res) => {
-  res.send('profile');
-
+  res.render('profile');
 });
 
 module.exports = router;
