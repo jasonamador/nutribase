@@ -5,20 +5,11 @@ const express = require('express');
 const router = express.Router();
 
 
-//get all foods
 
 router.get('/', function(req, res){
-  knex('foods')
-  .then(function(foods){
-    res.render('foods',{
-      foods
-    });
+
+    res.render('test');
   })
-  .catch(function(error){
-    console.log(error);
-    res.sendStatus(500);
-  });
-});
 
 
 module.exports = router;
