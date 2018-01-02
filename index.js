@@ -19,7 +19,15 @@ app.use(session({
   secret: 'supersecret',
 }));
 
+let foodRouter = require('./routes/foods');
+
+
 app.use('/users', users);
+
+// route meals
+// route
+//food routes
+app.use('/foods', foodRouter);
 
 app.use('/dashboard', dashboard);
 

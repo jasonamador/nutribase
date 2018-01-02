@@ -1200,7 +1200,7 @@ exports.seed = function(knex, Promise) {
           protein: 22,
           carbohydrates: 0,
           fiber: 0,
-          bad_fat:6 ,
+          bad_fat: 6,
         },
         {
           name: 'Chicken-breast, 100g',
