@@ -3,6 +3,8 @@ const bcrypt = require('bcrypt');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const morganBody = require('morgan-body');
+const chart = require('chart.js');
+
 
 // routes
 const users = require('./routes/users');
@@ -20,7 +22,7 @@ app.use(session({
 }));
 
 let foodRouter = require('./routes/foods');
-
+let testRouter = require('./routes/test')
 
 app.use('/users', users);
 
@@ -28,6 +30,7 @@ app.use('/users', users);
 // route
 //food routes
 app.use('/foods', foodRouter);
+app.use('/test', testRouter);
 
 app.use('/dashboard', dashboard);
 
