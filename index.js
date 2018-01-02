@@ -4,6 +4,8 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const users = require('./routes/users');
 const morganBody = require('morgan-body');
+const chart = require('chart.js');
+
 
 const PORT = process.env.PORT || 8000;
 const app = express();
@@ -16,13 +18,14 @@ app.use(session({
 }));
 
 let foodRouter = require('./routes/foods');
-
+let testRouter = require('./routes/test')
 
 app.use('/users', users);
 // route meals
 // route
 //food routes
 app.use('/foods', foodRouter);
+app.use('/test', testRouter);
 
 app.listen(PORT, () => {
   console.log('listening on ', PORT);
