@@ -7,11 +7,11 @@ exports.seed = function(knex, Promise) {
     .then(function() {
       // Inserts seed entries
       return bcrypt.hash('asdf', salt)
-      .then((hpw) => {
+      .then((hashedPassword) => {
         return knex('users').insert([{
             email: 'joe@email.com',
             name: 'joe',
-            password: hpw,
+            password: hashedPassword,
             calories: 2000,
             sugar: 50,
             fat: 25,
@@ -23,7 +23,7 @@ exports.seed = function(knex, Promise) {
           {
             email: 'bob@email.com',
             name: 'bob',
-            password: hpw,
+            password: hashedPassword,
             calories: 2010,
             sugar: 50,
             fat: 25,
@@ -35,7 +35,7 @@ exports.seed = function(knex, Promise) {
           {
             email: 'mary@email.com',
             name: 'mary',
-            password: hpw,
+            password: hashedPassword,
             calories: 2000,
             sugar: 50,
             fat: 25,

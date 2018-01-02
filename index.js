@@ -11,13 +11,20 @@ const app = express();
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(bodyParser.json());
+
 app.use(session({
   secret: 'supersecret',
 }));
 
 app.use('/users', users);
-// route meals
-// route
+
+app.use('/', (req, res) => {
+  if (session.user) {
+    res.redirect('/dashboard');
+  } else {
+    res.redirect('/users/login');
+  }
+});
 
 app.listen(PORT, () => {
   console.log('listening on ', PORT);

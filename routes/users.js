@@ -6,6 +6,9 @@ const express = require('express');
 const router = express.Router();
 const session = require('express-session');
 
+// put in environment variable!!
+const salt = 9;
+
 router.use(bodyParser.urlencoded());
 
 // login
@@ -29,7 +32,25 @@ router.post('/login', (req, res) => {
 
 // signup
 router.post('/signup', (req, res) => {
-  res.send(req.body);
+  // TODO: some validation
+  bcrypt.hash(req.body.password, salt)
+  .then((hashedPassword) => {
+    let user = {
+      name: res.body.name,
+      email: res.body.email,
+      password: hashedPassword,
+    };
+    knex('users').insert(req.body)
+    .then((user) => {
+      session.user =
+      redirect()
+    });
+  })
+  .catch((e) => {
+    // TODO: something better
+    console.error(e);
+    res.sendStatus(500);
+  });
 });
 
 // logout
