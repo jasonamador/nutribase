@@ -27,8 +27,7 @@ app.use(session({
 }));
 
 let foodRouter = require('./routes/foods');
-
-let testRouter = require('./routes/test')
+let testRouter = require('./routes/test');
 
 
 app.use('/users', users);
