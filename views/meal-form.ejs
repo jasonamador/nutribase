@@ -1,0 +1,65 @@
+<li>
+  <div class="collapsible-header">
+    <i class="medium material-icons">add</i>
+    Add Meal
+  </div>
+  <div class="collapsible-body">
+    <form id="mealForm" name="meal-form">
+      <div class="row">
+        <div class="col s4">
+          <input name="mealLabel" id="mealLabel" placeholder="Label"/>
+        </div>
+      </div>
+      <ul class="collapsible popout">
+        <li>
+          <div class="collapsible-header">
+            <i class="medium material-icons">add</i> Add Food
+          </div>
+          <div class="collapsible-body">
+            <div class="row">
+              <div class="input-field col s4">
+                <select>
+                  <option value="" disabled selected>Food Group</option>
+                  <option value="Fruits">Fruits</option>
+                </select>
+              </div>
+              <div class="input-field col s8">
+                <select>
+                  <option value="" disabled selected>Food Name</option>
+                  <option value="food_id">Apples</option>
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="range-field col s">
+                <label for="quantity">Quantity</label>
+                <input type="range" id="quantity" min="0" max="5" value="1" step="0.1" />
+              </div>
+              <div class="col s1">
+                Calories
+              </div>
+              <div class="col s1">
+                Fat
+              </div>
+              <div class="col s1">
+                Sugar
+              </div>
+              <div class="col s1">
+                Protein
+              </div>
+              <div class="col s1">
+                Carbs
+              </div>
+              <div class="col s1">
+                Fiber
+              </div>
+              <div class="col s1">
+                Bad Fat
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </form>
+  </div>
+</li>

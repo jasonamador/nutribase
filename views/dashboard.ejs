@@ -2,14 +2,15 @@
 <body>
   <%- include('navbar') %>
   <div class="container">
-    <h1>This is the dashboard page</h1>
-    <div class="row">
-      <% for (let i = 0; i < meals.length; i++) { %>
-        <div class="col s3">
-          <%= `${meals[i].label} Calories: ${meals[i].calories} Fat: ${fat} ` %>
-        </div>
+    <h1>Today</h1>
+    <ul class="collapsible popout">
+      <% for (let i = 0; i < meals.length; i++) {
+        let meal = meals[i];
+      %>
+        <%- include('meal-view', {meal: meals[i]}); %>
       <% } %>
-    </div>
+      <%- include('meal-form', user); %>
+    </ul>
   </div>
 </body>
 </html>
