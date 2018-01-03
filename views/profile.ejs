@@ -1,59 +1,57 @@
 <%- include('head'); %>
-<body>
-  <%-include('navbar'); %>
-  <div class="container">
-    <form name="create profile" action="/profile" method="POST">
-  <label>Name: </label>
-  <input type="text" name="Name" value=""></br>
-  <label>Email: </label>
-  <input type="text" name="Email" value=""></br>
-  <label>Password: </label>
-  <input type="text" name="Password" value=""></br>
-
-  <button type="submit">SUBMIT</button>
-</form>
-    <h1>User Profile</h1>
-    <div class="row">
+  <body>
+    <%-include('navbar'); %>
       <div class="col s6">
-        Email: <%= email; %>
+        Name:
+        <%= name; %>
       </div>
-      <div class="col s6">
-        Name: <%= name; %>
-      </div>
-    </div>
-    <h3>Diet Profile</h3>
-    <div class="row">
-      <div class="col s6">
-        Calories: <%= calories; %>
-      </div>
-      <div class="col s6">
-        Sugar: <%= sugar; %>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col s6">
-        Protein: <%= protein; %>
-      </div>
-      <div class="col s6">
-        Carbs: <%= carbohydrates; %>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col s6">
-        Fiber: <%= fiber; %>
-      </div>
-      <div class="col s6">
-        Bad Fat: <%= bad_fat; %>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col s6">
-        Fat: <%= fat; %>
-      </div>
-      <div class="col s6">
-        Bad Fat: <%= bad_fat; %>
-      </div>
-    </div>
-  </div>
-</body>
+      <div class="row">
+        <div class="col s6">
+          Email:
+          <%= email; %>
+        </div>
+        <div class="col s6">
+          <h3>Diet Profile</h3>
+          <div class="row">
+            <div class="col s6">
+              Calories:
+              <%= calories; %>
+            </div>
+            <div class="col s6">
+              Sugar:
+              <%= sugar; %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s6">
+              Protein:
+              <%= protein; %>
+            </div>
+            <div class="col s6">
+              Carbs:
+              <%= carbohydrates; %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s6">
+              Fiber:
+              <%= fiber; %>
+            </div>
+            <div class="col s6">
+              Bad Fat:
+              <%= bad_fat; %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s6">
+              Fat:
+              <%= fat; %>
+            </div>
+            <div class="col s6">
+              Bad Fat:
+              <%= bad_fat; %>
+            </div>
+          </div>
+        </div>
+  </body>
 </html>

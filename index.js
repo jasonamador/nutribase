@@ -29,7 +29,6 @@ app.use(session({
 let foodRouter = require('./routes/foods');
 let testRouter = require('./routes/test');
 
-
 app.use('/users', users);
 
 // route meals
@@ -37,6 +36,7 @@ app.use('/users', users);
 //food routes
 app.use('/foods', foodRouter);
 app.use('/test', testRouter);
+
 
 app.use('/dashboard', dashboard);
 
