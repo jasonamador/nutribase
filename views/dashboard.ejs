@@ -2,22 +2,70 @@
 <body>
   <%- include('navbar') %>
   <div class="container">
-    <h1>This is the dashboard page</h1>
+    <h1>Today</h1>
     <ul class="collapsible popout">
-      <% for (let i = 0; i < meals.length; i++) { %>
+      <% for (let i = 0; i < meals.length; i++) {
+        let meal = meals[i];
+      %>
         <li>
           <div class="collapsible-header">
             <h5><%= meals[i].label %></h5>
           </div>
           <div class="collapsible-body">
             <ul class="collapsible popout">
-              <% for (let j = 0; j < meals[i].foods.length; j++) { %>
+              <% for (let j = 0; j < meals[i].foods.length; j++) {
+                let food = meals[i].foods[j]
+              %>
                 <li>
                   <div class="collapsible-header">
-                    <h5><%= meals[i].foods[j].name %></h5>
+                    <div class="container">
+                      <div class="row">
+                        <div class="col s6">
+                          <h5><%= food.name %></h5>
+                        </div>
+                        <div class="col s6">
+                          <h5><%= `${food.calories}/${user.calories}` %> calories </h5>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                   <div class="collapsible-body">
-                    Calories: <%= meals[i].foods[j].calories %>
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>
+                            Attribute
+                          </th>
+                          <th>Value</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Fat</td>
+                          <td><%= food.fat %>g</td>
+                        </tr>
+                        <tr>
+                          <td>Bad Fat</td>
+                          <td><%= food.bad_fat %>g</td>
+                        </tr>
+                        <tr>
+                          <td>Protein</td>
+                          <td><%= food.protein %>g</td>
+                        </tr>
+                        <tr>
+                          <td>Sugar</td>
+                          <td><%= food.sugar %>g</td>
+                        </tr>
+                        <tr>
+                          <td>Fiber</td>
+                          <td><%= food.fiber %>g</td>
+                        </tr>
+                        <tr>
+                          <td>Carbohydrates</td>
+                          <td><%= food.carbohydrates %>g</td>
+                        </tr>
+                      </tbody>
+                    </table>
                   </div>
                 </li>
               <% } %>

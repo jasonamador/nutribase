@@ -23,7 +23,6 @@ router.get('/', (req, res) => {
       })
     }).then(() => {
       Promise.all(mealsPromises).then(() => {
-        console.log(meals);
         res.render('dashboard', {meals, user: req.session.user});
       });
     });
