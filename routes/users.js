@@ -84,7 +84,7 @@ router.get('/profile/edit', (req, res) => {
 });
 
 // update user
-router.patch('/', (req, res) => {
+router.patch('/profile/', (req, res) => {
   res.send(req.body);
 });
 
