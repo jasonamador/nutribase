@@ -5,15 +5,15 @@ exports.seed = function(knex, Promise) {
       // Inserts seed entries
       return knex('meals').insert([{
           user_id: 1,
-          label: 'lunch',
+          label: 'Breakfast',
         },
         {
-          user_id: 2,
-          label: 'dinner',
+          user_id: 1,
+          label: 'Lunch',
         },
         {
-          user_id: 3,
-          label: 'snack',
+          user_id: 1,
+          label: 'Dinner',
         },
       ]);
     });

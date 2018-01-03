@@ -24,5 +24,4 @@ $(() => {
       $(e.target).addClass('valid');
     }
   });
-  $('#')
 });

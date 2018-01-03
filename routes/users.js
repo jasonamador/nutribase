@@ -4,7 +4,6 @@ const bcrypt = require('bcrypt-as-promised');
 const bodyParser = require('body-parser');
 const express = require('express');
 const router = express.Router();
-const session = require('express-session');
 
 // put in environment variable!!
 const salt = 9;
@@ -13,7 +12,11 @@ router.use(bodyParser.urlencoded());
 
 // login
 router.get('/login', (req, res) => {
-  res.render('login-signup', {});
+  if (req.session.user) {
+    res.redirect('/profile');
+  } else {
+    res.render('login-signup', {});
+  }
 });
 
 router.post('/login', (req, res) => {
@@ -21,8 +24,8 @@ router.post('/login', (req, res) => {
   .then((user) => {
     bcrypt.compare(req.body.loginPassword, user.password)
     .then(() => {
-      session.user = user;
-      res.redirect('/dashboard');
+      req.session.user = user;
+      res.redirect('/profile');
     })
     .catch(() => {
       res.redirect('/users/login');
@@ -41,7 +44,7 @@ router.post('/signup', (req, res) => {
     };
     knex('users').insert(user)
     .then((user) => {
-      session.user = user;
+      req.session.user = user;
       res.redirect('/users/profile');
     });
   })
@@ -54,13 +57,21 @@ router.post('/signup', (req, res) => {
 
 // logout
 router.post('/logout', (req, res) => {
-  delete session.user;
+  delete req.session.user;
+  res.redirect('/users/login');
+});
+router.get('/logout', (req, res) => {
+  delete req.session.user;
   res.redirect('/users/login');
 });
 
 // profile
 router.get('/profile', (req, res) => {
-  res.render('profile');
+  if (req.session.user) {
+    res.render('profile', req.session.user);
+  } else {
+    res.redirect('/users/login');
+  }
 });
 
 module.exports = router;
