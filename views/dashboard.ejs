@@ -3,13 +3,30 @@
   <%- include('navbar') %>
   <div class="container">
     <h1>This is the dashboard page</h1>
-    <div class="row">
+    <ul class="collapsible popout">
       <% for (let i = 0; i < meals.length; i++) { %>
-        <div class="col s3">
-          <%= `${meals[i].label} Calories: ${meals[i].calories} Fat: ${fat} ` %>
-        </div>
+        <li>
+          <div class="collapsible-header">
+            <h5><%= meals[i].label %></h5>
+          </div>
+          <div class="collapsible-body">
+            <ul class="collapsible popout">
+              <% for (let j = 0; j < meals[i].foods.length; j++) { %>
+                <li>
+                  <div class="collapsible-header">
+                    <h5><%= meals[i].foods[j].name %></h5>
+                  </div>
+                  <div class="collapsible-body">
+                    Calories: <%= meals[i].foods[j].calories %>
+                  </div>
+                </li>
+              <% } %>
+            </ul>
+          </div>
+        </li>
       <% } %>
-    </div>
+    </ul>
   </div>
+  <script src="/js/dashboard.js"></script>
 </body>
 </html>
