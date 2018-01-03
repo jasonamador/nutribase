@@ -40,7 +40,7 @@ router.post('/signup', (req, res) => {
   bcrypt.hash(req.body.signupPassword, salt)
   .then((hashedPassword) => {
     let user = {
-      email: req.body.email,
+      email: req.body.signupEmail,
       password: hashedPassword,
     };
     knex('users').insert(user)
