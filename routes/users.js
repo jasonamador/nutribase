@@ -22,6 +22,7 @@ router.get('/login', (req, res) => {
 router.post('/login', (req, res) => {
   knex('users').where('email', req.body.loginEmail).first()
   .then((user) => {
+    // add something if no user
     bcrypt.compare(req.body.loginPassword, user.password)
     .then(() => {
       req.session.user = user;

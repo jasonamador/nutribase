@@ -9,37 +9,22 @@ const session = require('express-session');
 router.use(bodyParser.urlencoded());
 
 router.get('/', (req, res) => {
+  let meals = [];
+  let mealsPromises = [];
   if (req.session.user) {
     knex('meals').where('user_id', req.session.user.id)
-    .join('foods_meals', 'foods_meals.meal_id', 'meals.id')
-    .join('foods', 'foods_meals.food_id', 'foods.id')
-    // .whereRaw('date_time > now()::date')
     .then((dbMeals) => {
-      let meals = [];
-      dbMeals.forEach((food) => {
-        if (!meals[food.meal_id]) {
-          meals[food.meal_id] = {
-            name : food.label,
-            time : food.date_time,
-            id : food.meal_id,
-            foods : [],
-          };
-        }
-        meals[food.meal_id].foods.push(
-          {
-            name : food.name,
-            group : food.group,
-            calories : food.calories,
-            fat : food.calories,
-            sugar : food.sugar,
-            protein : food.protein,
-            carbs : food.carbohydrates,
-            fiber : food.fiber,
-            badFat : food.bad_fat,
-          });
-          console.log(meals);
+      dbMeals.forEach((meal) => {
+        mealsPromises.push(knex('foods').join('foods_meals', 'foods_meals.food_id', 'foods.id').where('foods_meals.meal_id', meal.id)
+        .then((foods) => {
+          meal.foods = foods;
+          meals.push(meal);
+        }));
+      })
+    }).then(() => {
+      Promise.all(mealsPromises).then(() => {
+        res.render('dashboard', {meals, user: req.session.user});
       });
-      res.render('dashboard', {dbMeals});
     });
   } else {
     res.redirect('/login');
