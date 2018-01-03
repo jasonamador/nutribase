@@ -13,53 +13,54 @@
 </head>
 
 <body>
-  <div class="container">
-  <h1><b>Food Table</b></h1>
-  <div class="row">
-    <div class="col s2"><b>Name</b></div>
-    <div class="col s2"><b>Food Group</b></div>
-    <div class="col s1"><b>Calories</b></div>
-    <div class="col s1"><b>Fat</b></div>
-    <div class="col s1"><b>Sugar</b></div>
-    <div class="col s1"><b>Protein</b></div>
-    <div class="col s1"><b>Carbs</b></div>
-    <div class="col s1"><b>Fiber</b></div>
-    <div class="col s1"><b>Bad Fats*</b></div>
-  </div>
-
-
-  <%for(let i=0; i< foods.length; i++){%>
-    <div class="row">
-      <div class="col s2">
-        <%= foods[i].name%>
-      </div>
-      <div class="col s2">
-        <%=foods[i].group %>
-      </div>
-      <div class="col s1">
-        <%=foods[i].calories%> kcal
-      </div>
-      <div class="col s1">
-        <%= foods[i].fat%>g
-      </div>
-      <div class="col s1">
-        <%= foods[i].sugar%> g
-      </div>
-      <div class="col s1">
-        <%= foods[i].protein%>g
-      </div>
-      <div class="col s1">
-        <%= foods[i].carbohydrates%>g
-      </div>
-      <div class="col s1">
-        <%= foods[i].fiber%>g
-      </div>
-      <div class="col s1">
-        <%= foods[i].bad_fat%>g
-      </div>
+    <div class="navbar-fixed">
+      <nav>
+        <ul>
+          <li style="margin-left: 210px"><b>Name</b></li>
+          <li style="margin-left: 100px"><b>Food Group</b></li>
+          <li style="margin-left: 110px"><b>Calories</b></li>
+          <li style="margin-left: 40px"><b>Fat</b></li>
+          <li style="margin-left: 50px"><b>Sugar</b></li>
+          <li style="margin-left: 35px"><b>Protein</b></li>
+          <li style="margin-left: 45px"><b>Carbs</b></li>
+          <li style="margin-left: 45px"><b>Fiber</b></li>
+          <li style="margin-left: 35px"><b>Bad Fats*</b></li>
+        </ul>
+      </nav>
     </div>
-    <%}%>
-    <p>*Bad Fats= combination of Trans Fats, Monosaturated Fats, & Polysaturated Fats</p>
+<div class="container">
+    <%for(let i=0; i< foods.length; i++){%>
+      <div class="row">
+        <div class="col s2">
+          <%= foods[i].name%>
+        </div>
+        <div class="col s2">
+          <%=foods[i].group %>
+        </div>
+        <div class="col s1">
+          <%=foods[i].calories%> kcal
+        </div>
+        <div class="col s1">
+          <%= foods[i].fat%>g
+        </div>
+        <div class="col s1">
+          <%= foods[i].sugar%> g
+        </div>
+        <div class="col s1">
+          <%= foods[i].protein%>g
+        </div>
+        <div class="col s1">
+          <%= foods[i].carbohydrates%>g
+        </div>
+        <div class="col s1">
+          <%= foods[i].fiber%>g
+        </div>
+        <div class="col s1">
+          <%= foods[i].bad_fat%>g
+        </div>
+      </div>
+      <%}%>
+        <p>*Bad Fats= combination of Trans Fats, Monosaturated Fats, & Polysaturated Fats</p>
 </body>
 
 </html>
