@@ -1,0 +1,65 @@
+<li>
+  <div class="collapsible-header">
+    <h5><%= meal.label %></h5>
+  </div>
+  <div class="collapsible-body">
+    <ul class="collapsible popout">
+      <% for (let j = 0; j < meal.foods.length; j++) {
+        let food = meal.foods[j]
+      %>
+        <li>
+          <div class="collapsible-header">
+            <div class="container">
+              <div class="row">
+                <div class="col s6">
+                  <h5><%= food.name %></h5>
+                </div>
+                <div class="col s6">
+                  <h5><%= `${food.calories}/${user.calories}` %> calories </h5>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="collapsible-body">
+            <table>
+              <thead>
+                <tr>
+                  <th>
+                    Attribute
+                  </th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Fat</td>
+                  <td><%= food.fat %>g</td>
+                </tr>
+                <tr>
+                  <td>Bad Fat</td>
+                  <td><%= food.bad_fat %>g</td>
+                </tr>
+                <tr>
+                  <td>Protein</td>
+                  <td><%= food.protein %>g</td>
+                </tr>
+                <tr>
+                  <td>Sugar</td>
+                  <td><%= food.sugar %>g</td>
+                </tr>
+                <tr>
+                  <td>Fiber</td>
+                  <td><%= food.fiber %>g</td>
+                </tr>
+                <tr>
+                  <td>Carbohydrates</td>
+                  <td><%= food.carbohydrates %>g</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </li>
+      <% } %>
+    </ul>
+  </div>
+</li>
