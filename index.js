@@ -4,7 +4,7 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const morganBody = require('morgan-body');
 const chart = require('chart.js');
-const methodOverride= require('method-override')
+const methodOverride= require('method-override');
 
 // routes
 const users = require('./routes/users');
@@ -15,7 +15,6 @@ const app = express();
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
-app.use(bodyParser.json());
 app.use(methodOverride('_method'));
 
 app.use(session({

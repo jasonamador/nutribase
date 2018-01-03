@@ -1,0 +1,52 @@
+<%- include('head'); %>
+<body>
+<%- include('navbar'); %>
+<div class="container">
+  <form name="profile_edit" action="/users/profile/?_method=PATCH" method="POST">
+    <div class="row">
+      <div class="input-field col s12">
+        <label for="name">Name</label>
+        <input id="name" name="name" type="text" value="">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12 range-field">
+        Calories:
+        <input type="range" name="calories" id="calories"min="0" max="5000" step="25" value="">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s6 range-field" value="">
+        Sugar:
+        <input id="sugar" name="sugar" type="range" min="0" max="100" step="1">
+      </div>
+      <div class="col s6 range-field" value="">
+        Fat:
+        <input type="range" id="fat" name="fat"min="0" max="100" step="1" value="">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s6 range-field">
+        Protein:
+        <input type="range" name="protein" id="protein"min="0" max="300" step="5" value="">
+      </div>
+      <div class="col s6 range-field">
+        Carbohydrates
+        <input type="range" id="carbohydrates" name="carbohydrates" min="0" max="200" step="5" value="">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s6 range-field">
+        Fiber:
+        <input type="range" id="fiber" name="fiber" min="0" max="100" step="1" value="">
+      </div>
+      <div class="col s6">
+        Bad Fat:
+        <input type="range" id="bad_fat" name="bad_fat" min="0" max="100" step="1" value="">
+      </div>
+    </div>
+    <button type="submit">Submit</button>
+  </form>
+</div>
+</body>
+</html>
