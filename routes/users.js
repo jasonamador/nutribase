@@ -40,7 +40,7 @@ router.post('/signup', (req, res) => {
   bcrypt.hash(req.body.signupPassword, salt)
   .then((hashedPassword) => {
     let user = {
-      email: req.body.email,
+      email: req.body.signupEmail,
       password: hashedPassword,
     };
     knex('users').insert(user)
@@ -73,6 +73,19 @@ router.get('/profile', (req, res) => {
   } else {
     res.redirect('/users/login');
   }
+});
+
+router.get('/profile/edit', (req, res) => {
+  if (req.session.user) {
+    res.render('profile-edit', req.session.user);
+  } else {
+    res.redirect('/users/login');
+  }
+});
+
+// update user
+router.patch('/', (req, res) => {
+  res.send(req.body);
 });
 
 module.exports = router;
