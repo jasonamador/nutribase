@@ -9,9 +9,7 @@
       %>
         <%- include('meal-view', {meal: meals[i]}); %>
       <% } %>
-      <li>
-        <a href="#" id="addMeal"><i class="material-icons">add</i> Add Meal</a>
-      </li>
+      <%- include('meal-form', user); %>
     </ul>
   </div>
   <script src="/js/dashboard.js"></script>

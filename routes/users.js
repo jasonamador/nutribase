@@ -75,4 +75,17 @@ router.get('/profile', (req, res) => {
   }
 });
 
+router.get('/profile/edit', (req, res) => {
+  if (req.session.user) {
+    res.render('profile-edit', req.session.user);
+  } else {
+    res.redirect('/users/login');
+  }
+});
+
+// update user
+router.patch('/', (req, res) => {
+  res.send(req.body);
+});
+
 module.exports = router;

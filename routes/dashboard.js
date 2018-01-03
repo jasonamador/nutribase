@@ -20,7 +20,7 @@ router.get('/', (req, res) => {
           meal.foods = foods;
           meals.push(meal);
         }));
-      })
+      });
     }).then(() => {
       Promise.all(mealsPromises).then(() => {
         res.render('dashboard', {meals, user: req.session.user});
@@ -30,6 +30,5 @@ router.get('/', (req, res) => {
     res.redirect('/login');
   }
 });
-
 
 module.exports = router;
