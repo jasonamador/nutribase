@@ -1,10 +1,9 @@
-<%- include('head', {scripts: ['/js/dashboard.js']}) %>
+<%- include('head', {scripts: ['/js/dashboard.js', 'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js']}) %>
 <body>
   <%- include('navbar') %>
   <div class="container">
     <h1>Today</h1>
     <canvas id='todayChart'></canvas>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
     <ul class="collapsible popout">
       <% for (let i = 0; i < meals.length; i++) {
         let meal = meals[i];

@@ -12,7 +12,6 @@ router.get('/', (req, res) => {
   let meals = [];
   let mealsPromises = [];
   if (req.session.user) {
-    console.log(req.session.user.id);
     knex('meals').whereRaw(`user_id = ${req.session.user.id} AND date_time > now()::date - 1`)
     .then((dbMeals) => {
       dbMeals.forEach((meal) => {
@@ -23,7 +22,6 @@ router.get('/', (req, res) => {
         }));
       });
     }).then(() => {
-      console.log('then');
       Promise.all(mealsPromises).then(() => {
         res.render('dashboard', {meals, user: req.session.user});
       });
