@@ -6,13 +6,11 @@ const morganBody = require('morgan-body');
 const chart = require('chart.js');
 const methodOverride= require('method-override');
 
-// routes
-const users = require('./routes/users');
-const dashboard = require('./routes/dashboard');
 
 const PORT = process.env.PORT || 8000;
 const app = express();
 
+//middleware
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(methodOverride('_method'));
@@ -25,19 +23,17 @@ app.use(session({
   }
 }));
 
-let foodRouter = require('./routes/foods');
-let testRouter = require('./routes/test');
-
+// routes
+const users = require('./routes/users');
 app.use('/users', users);
-
-// route meals
-// route
-//food routes
-app.use('/foods', foodRouter);
-app.use('/test', testRouter);
-
-
+const dashboard = require('./routes/dashboard');
 app.use('/dashboard', dashboard);
+const foods = require('./routes/foods');
+app.use('/foods', foods);
+const test = require('./routes/test');
+app.use('/test', test);
+const meals = require('./routes/meals');
+app.use('/meals', meals);
 
 app.use('/', (req, res) => {
   if (req.session.user) {

@@ -15,7 +15,7 @@ router.get('/login', (req, res) => {
   if (req.session.user) {
     res.redirect('/profile');
   } else {
-    res.render('login-signup', {});
+    res.render('login-signup');
   }
 });
 

@@ -5,13 +5,14 @@ $(() => {
   $.ajax({
     url: '/meals/today',
     type: 'GET',
-    contentType: 'application/json',
     dataType: 'json'
   })
   .then((result) => {
     console.log(result);
+  })
+  .catch((e) => {
+    console.log('error', e);
   });
-  
   let chartCanvas = document.getElementById('todayChart').getContext('2d');
   let chart = new Chart(chartCanvas,{
     type:'horizontalBar',

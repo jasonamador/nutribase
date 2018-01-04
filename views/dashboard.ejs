@@ -1,29 +1,10 @@
-<%- include('head') %>
+<%- include('head', {scripts: ['/js/dashboard.js']}) %>
 <body>
   <%- include('navbar') %>
   <div class="container">
     <h1>Today</h1>
     <canvas id='todayChart'></canvas>
-    <script src="/js/dashboard.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-    <script>
-      let todayChart = document.getElementById('todayChart').getContext('2d');
-      let nutriChart = new Chart(todayChart,{
-        type:'horizontalBar',
-        data:{
-          labels:['Calories', 'Total Fat', 'Bad Fat', 'Protein', 'Sugar', 'Carbs','Fiber'],
-          datasets:[{
-            data:[((100/2000)*100),-20,14,5,-6,-10,5],
-            backgroundColor:'green',
-            borderWidth: 2,
-            borderColor: 'black',
-            hoverBorderWidth: 4,
-            hoverBorderColor:'gray'
-          }]
-        },
-        object:{}
-      })
-    </script>
     <ul class="collapsible popout">
       <% for (let i = 0; i < meals.length; i++) {
         let meal = meals[i];
