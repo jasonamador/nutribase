@@ -1,108 +1,196 @@
-<%- include('head', {scripts: []}); %>
-<body>
-<%- include('navbar'); %>
-<div class="container">
-  <h2>Profile Editor</h2>
-  <h5>Configure Your Health</h5>
-  <form name="profile_edit" action="/users/profile/?_method=PATCH" method="POST">
-    <div class="row">
-      <div class="input-field col s4">
-        <label for="name">Name</label>
-        <input id="name" name="name" type="text" value="">
+<%- include('head'); %>
+  <style>
+    input[type=range]::-webkit-slider-thumb {
+      background-color: red;
+    }
+
+    input[type=range]::-moz-range-thumb {
+      background-color: red;
+    }
+
+    input[type=range]::-ms-thumb {
+      background-color: red;
+    }
+
+    /***** These are to edit the thumb and the text inside the thumb *****/
+
+    input[type=range]+.thumb {
+      display: none;
+    }
+
+    input[type=range]+.thumb.active .value {
+      color: red;
+    }
+  </style>
+
+  <body>
+    <%- include('navbar'); %>
+      <div class="container">
+        <form name="profile_edit" action="/users/profile/?_method=PATCH" method="POST">
+          <div class="row">
+            <div class="input-field col s12">
+              <label for="name"><b>Name</b></label>
+              <input id="name" name="name" type="text" value="">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s12 range-field">
+              <b>Calories: <span id="value"></span></b>
+              <div class="switch">
+                <label>
+     limit
+     <input type="checkbox">
+     <span class="lever" style="background-color:blue"></span>
+     minimum
+   </label>
+              </div>
+              <input type="range" name="calories" id="calories" min="0" max="5000" step="25" value="">
+              <script>
+                let calSlider = document.getElementById("calories");
+                let output = document.getElementById("value");
+                output.innerHTML = calSlider.value;
+                calSlider.oninput = function() {
+                  output.innerHTML = this.value;
+                }
+              </script>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s6 range-field">
+              <b>Sugar: <span id="sugarValue"></span></b>
+              <div class="switch">
+                <label>
+   limit
+   <input type="checkbox">
+   <span class="lever"></span>
+   minimum
+ </label>
+              </div>
+              <input id="sugar" name="sugar" type="range" min="0" max="100" step="1">
+              <script>
+                let sugarSlider = document.getElementById("sugar");
+                let sugarOutput = document.getElementById("sugarValue");
+                sugarOutput.innerHTML = sugarSlider.value;
+                sugarSlider.oninput = function() {
+                  sugarOutput.innerHTML = this.value;
+                }
+              </script>
+            </div>
+            <div class="col s6 range-field" value="">
+              <b>Fat:<span id="fatValue"></span></b>
+              <div class="switch">
+                <label>
+     limit
+     <input type="checkbox">
+     <span class="lever"></span>
+     minimum
+   </label>
+              </div>
+              <input type="range" id="fat" name="fat" min="0" max="100" step="1" value="">
+              <script>
+                let fatSlider = document.getElementById("fat");
+                let fatOutput = document.getElementById("fatValue");
+                fatOutput.innerHTML = fatSlider.value;
+                fatSlider.oninput = function() {
+                  fatOutput.innerHTML = this.value;
+                }
+              </script>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s6 range-field">
+              <b>Protein: <span id="proteinValue"></span></b>
+              <div class="switch">
+                <label>
+     limit
+     <input type="checkbox">
+     <span class="lever"></span>
+     minimum
+   </label>
+              </div>
+              <input type="range" name="protein" id="protein" min="0" max="300" step="5" value="">
+              <script>
+                let proteinSlider = document.getElementById("protein");
+                let proteinOutput = document.getElementById("proteinValue");
+                proteinOutput.innerHTML = proteinSlider.value;
+                proteinSlider.oninput = function() {
+                  proteinOutput.innerHTML = this.value;
+                }
+              </script>
+            </div>
+            <div class="col s6 range-field">
+              <b>Carbohydrates: <span id="carbValue"></span></b>
+              <div class="switch">
+                <label>
+     limit
+     <input type="checkbox">
+     <span class="lever"></span>
+     minimum
+   </label>
+              </div>
+              <input type="range" id="carbohydrates" name="carbohydrates" min="0" max="200" step="5" value="">
+              <script>
+                let carbSlider = document.getElementById("carbohydrates");
+                let carbOutput = document.getElementById("carbValue");
+                carbOutput.innerHTML = carbSlider.value;
+                carbSlider.oninput = function() {
+                  carbOutput.innerHTML = this.value;
+                }
+              </script>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s6 range-field">
+              <b>Fiber: <span id="fiberValue"></span></b>
+              <div class="switch">
+                <label>
+     limit
+     <input type="checkbox">
+     <span class="lever"></span>
+     minimum
+   </label>
+              </div>
+              <input type="range" id="fiber" name="fiber" min="0" max="100" step="1" value="">
+              <script>
+                let fiberSlider = document.getElementById("fiber");
+                let fiberOutput = document.getElementById("fiberValue");
+                fiberOutput.innerHTML = fiberSlider.value;
+                fiberSlider.oninput = function() {
+                  fiberOutput.innerHTML = this.value;
+                }
+              </script>
+            </div>
+            <div class="col s6">
+              <b>Bad Fat*: <span id="badValue"></span></b>
+              <div class="switch">
+                <label>
+     limit
+     <input type="checkbox">
+     <span class="lever"></span>
+     minimum
+   </label>
+              </div>
+              <input type="range" id="bad_fat" name="bad_fat" min="0" max="100" step="1" value="">
+              <script>
+                let badSlider = document.getElementById("bad_fat");
+                let badOutput = document.getElementById("badValue");
+                badOutput.innerHTML = badSlider.value;
+                badSlider.oninput = function() {
+                  badOutput.innerHTML = this.value;
+                }
+              </script>
+            </div>
+          </div>
+          <button style="margin-left: 400px" type="submit">Submit</button>
+        </form>
+        <p>*Bad Fats= combination of Trans Fats, Monosaturated Fats, & Polysaturated Fats</p>
       </div>
-    </div>
-    <div class="row">
-      <div class="col s4 range-field">
-        <label for="calories">Calories:</label>
-        <input type="range" name="calories" id="calories" min="0" max="5000" step="25" value="">
-      </div>
-      <div class="col s2 switch" >
-        <label>
-          Limit
-          <input type="checkbox" id="caloriesGoal" name="caloriesGoal"/>
-          <span class="lever"></span>
-          Goal
-        </label>
-      </div>
-      <div class="col s4 range-field" value="">
-        <label for="sugar">Sugar:</label>
-        <input id="sugar" name="sugar" type="range" min="0" max="100" step="1">
-      </div>
-      <div class="col s2 switch">
-        <label>
-          Limit
-          <input type="checkbox" name="sugarGoal" id="sugarGoal"/>
-          <span class="lever"></span>
-          Goal
-        </label>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col s4 range-field" value="">
-        <label for="fat">Fat:</label>
-        <input type="range" id="fat" name="fat"min="0" max="100" step="1" value="">
-      </div>
-      <div class="col s2 switch">
-        <label>
-          Limit
-          <input type="checkbox" name="fatGoal" id="fatGoal" />
-          <span class="lever"></span>
-          Goal
-        </label>
-      </div>
-      <div class="col s4 range-field">
-        <label for="protein">Protein:</label>
-        <input type="range" name="protein" id="protein"min="0" max="300" step="5" value="">
-      </div>
-      <div class="col s2 switch">
-        <label>
-          Limit
-          <input type="checkbox" name="proteinGoal" id="proteinGoal" />
-          <span class="lever"></span>
-          Goal
-        </label>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col s4 range-field">
-        <label for="carbohydrates">Carbohydrates</label>
-        <input type="range" id="carbohydrates" name="carbohydrates" min="0" max="200" step="5" value="">
-      </div>
-      <div class="col s2 switch">
-        <label>
-          Limit
-          <input type="checkbox" name="carbohydratesGoal" id="carbohydratesGoal" />
-          <span class="lever"></span>
-          Goal
-        </label>
-      </div>
-      <div class="col s4 range-field">
-        <label for="fiber">Fiber:</label>
-        <input type="range" id="fiber" name="fiber" min="0" max="100" step="1" value="">
-      </div>
-      <div class="col s2 switch">
-        <label>
-          Limit
-          <input type="checkbox" name="fiberGoal" id="fiberGoal" />
-          <span class="lever"></span>
-          Goal
-        </label>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col s4">
-        <label for="bad_fat">Bad Fat:</label>
-        <input type="range" id="bad_fat" name="bad_fat" min="0" max="100" step="1" value="">
-      </div>
-      <div class="col s2 switch">
-        <label>
-          Limit
-          <input type="checkbox" name="bad_fatGoal" id="bad_fatGoal" />
-          <span class="lever"></span>
-          Goal
-        </label>
-      </div>
-      <button class="btn" type="submit">Submit</button>
+
+
+  </body>
+
+
+
     </div>
   </form>
 </div>
