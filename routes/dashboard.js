@@ -8,11 +8,12 @@ const session = require('express-session');
 
 router.use(bodyParser.urlencoded());
 
-router.get('/', (req, res) => {:console.warn();
+router.get('/', (req, res) => {
   let meals = [];
   let mealsPromises = [];
   if (req.session.user) {
-    knex('meals').where('user_id', req.session.user.id)
+    console.log(req.session.user.id);
+    knex('meals').whereRaw(`user_id = ${req.session.user.id} AND date_time > now()::date - 1`)
     .then((dbMeals) => {
       dbMeals.forEach((meal) => {
         mealsPromises.push(knex('foods').join('foods_meals', 'foods_meals.food_id', 'foods.id').where('foods_meals.meal_id', meal.id)
@@ -22,6 +23,7 @@ router.get('/', (req, res) => {:console.warn();
         }));
       });
     }).then(() => {
+      console.log('then');
       Promise.all(mealsPromises).then(() => {
         res.render('dashboard', {meals, user: req.session.user});
       });
@@ -29,10 +31,6 @@ router.get('/', (req, res) => {:console.warn();
   } else {
     res.redirect('/login');
   }
-});
-
-router.get('/graph', (req, res) => {
-
 });
 
 module.exports = router;

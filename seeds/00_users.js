@@ -4,6 +4,7 @@ const salt = 9;
 exports.seed = function(knex, Promise) {
   // Deletes ALL existing entries
   return knex('users').del()
+    .then(() => knex.schema.raw('alter sequence users_id_seq restart'))
     .then(function() {
       // Inserts seed entries
       return bcrypt.hash('asdf', salt)

@@ -16,23 +16,22 @@ router.get('/', (req, res) => {
   });
 });
 
-router.get('/today', (req, res) => {
+router.get('/graph/:date', (req, res) => {
   let meals = [];
   let mealsPromises = [];
+  Promise.all(mealsPromises).then(() => {
+    res.send(meals);
+  });
   if (req.session.user) {
-    knex('meals').where('user_id', req.session.user.id)
+    knex('meals').whereRaw(`user_id = ${req.session.user.id} AND date_time > now()::date - 1`)
     .then((dbMeals) => {
+      console.log(dbMeals);
       dbMeals.forEach((meal) => {
         mealsPromises.push(knex('foods').join('foods_meals', 'foods_meals.food_id', 'foods.id').where('foods_meals.meal_id', meal.id)
         .then((foods) => {
           meal.foods = foods;
           meals.push(meal);
         }));
-      });
-    }).then(() => {
-      Promise.all(mealsPromises).then(() => {
-
-        res.send(meals);
       });
     });
   } else {
