@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.get('/', function(req, res){
 
-    res.render('test');
+    res.render('calender');
   })
 
 
