@@ -8,7 +8,7 @@ const session = require('express-session');
 
 router.use(bodyParser.urlencoded());
 
-router.get('/', (req, res) => {
+router.get('/', (req, res) => {:console.warn();
   let meals = [];
   let mealsPromises = [];
   if (req.session.user) {
@@ -29,6 +29,10 @@ router.get('/', (req, res) => {
   } else {
     res.redirect('/login');
   }
+});
+
+router.get('/graph', (req, res) => {
+
 });
 
 module.exports = router;
