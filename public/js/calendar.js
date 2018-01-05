@@ -55,6 +55,15 @@ $(() => {
         fill: false
       }]
     },
-    object:{}
+    options:{
+      scales:{
+        yAxes:[{
+          ticks:{
+            beginAtZero:true,
+            max: 100
+          }
+        }]
+      }
+    }
   })
 });
