@@ -95,13 +95,10 @@ router.patch('/profile/', (req, res) => {
   user.sugarGoal = !!user.sugarGoal;
   user.proteinGoal = !!user.proteinGoal;
 
-  knex('users').update(user).where('id', req.session.user.id)
-  .then(() => {
-    knex('users').where('id', req.session.user.id).first()
-    .then((user) => {
-      req.session.user = user;
-      res.redirect('/users/profile');
-    });
+  knex('users').update(user).where('id', req.session.user.id).returning('*')
+  .then((updatedUser) => {
+    req.session.user = updatedUser[0];
+    res.redirect('/users/profile');
   })
   .catch((e) => {
     console.error(e);

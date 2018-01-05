@@ -13,12 +13,14 @@ let today = (function () {
 })();
 
 $(() => {
+  // materialize inits
   $('.collapsible').collapsible();
   $('select').material_select();
 
   let chartCanvas = document.getElementById('todayChart').getContext('2d');
   let chart;
 
+  // get the graph data and put it in the graph
   $.ajax({
     url: `/meals/graph/${today}`,
     type: 'GET',
@@ -67,4 +69,17 @@ $(() => {
   .catch((e) => {
     console.log('error', e);
   });
+
+  // get the all the foods and categories
+  $.ajax({
+    url: `/dashboard/foods`,
+    type: 'GET',
+    dataType: 'json'
+  })
+  .then((result) => {
+    console.log(result);
+  })
+  .catch((e) => {
+    console.log(e);
+  })
 });
