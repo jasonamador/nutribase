@@ -71,15 +71,62 @@ $(() => {
   });
 
   // get the all the foods and categories
+  let foods;
   $.ajax({
     url: `/dashboard/foods`,
     type: 'GET',
     dataType: 'json'
   })
   .then((result) => {
-    console.log(result);
+    // put groups in the select
+    result.groups.forEach((e) => {
+      $('#foodGroups').append($(`<option value="${e}">${e}</option>`));
+    });
+    $('#foodGroups').material_select();
+    foods = result.foods;
   })
   .catch((e) => {
     console.log(e);
+  });
+
+  // change the foods dropdown
+  $('#foodGroups').change((e) => {
+    $('#foods').empty().append($('<option disabled selected>Food Name</option>'));
+    let groupFoods = foods[e.target.value];
+    groupFoods.forEach((food) => {
+      $('#foods').append($(`<option value="${food.id}">${food.name}</option>`));
+    });
+    $('#foods').material_select();
+  });
+
+  // change the display values when food selected
+  let food;
+  $('#foods').change((e) => {
+    $.ajax({
+      url: `/foods/${e.target.value}`,
+      type: 'GET',
+      dataType: 'json'
+    })
+    .then((fd) => {
+      food = fd;
+      $('#fatValue').text(food.fat);
+      $('#caloriesValue').text(food.calories);
+      $('#sugarValue').text(food.sugar);
+      $('#proteinValue').text(food.protein);
+      $('#fiberValue').text(food.fiber);
+      $('#carbohydratesValue').text(food.carbohydrates);
+      $('#bad_fatValue').text(food.bad_fat);
+    })
+    .catch((e) => {
+      console.log(e);
+    });
   })
+
+  // change display values on quantity change
+  $('#quantity').on('input', (e) => {
+    $('.value').each(function() {
+      $(this).text((food[this.id.replace('Value', '')] * e.target.value).toFixed(1));
+    });
+  });
+
 });
