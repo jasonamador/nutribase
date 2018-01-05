@@ -1,16 +1,21 @@
-$('.datepicker').pickadate({
-  selectMonths: true, // Creates a dropdown to control month
-  selectYears: 15, // Creates a dropdown of 15 years to control year,
-  today: 'Today',
-  clear: 'Clear',
-  close: 'Ok',
-  closeOnSelect: false // Close upon selecting a date,
-});
 
 let proteinArray =[45,100,75,30,75, 10,70]
 
+$.ajax({
+  url: '/meals/graph/01012018/05012018',
+  type: 'GET',
+  dataType: 'json'
+})
+.then((result) => {
+  console.log(result);
+})
+.catch((e) => {
+  console.log(e);
+});
+
 $(() => {
   let calendar = document.getElementById('calendar').getContext('2d');
+
   let dayChart = new Chart(calendar,{
     type:'line',
     data:{
@@ -55,4 +60,21 @@ $(() => {
     },
     object:{}
   })
+
+  $('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 15, // Creates a dropdown of 15 years to control year,
+    today: 'Today',
+    clear: 'Clear',
+    close: 'Ok',
+    closeOnSelect: false // Close upon selecting a date,
+  });
+
+  $('#startDate').on('change', (e) => {
+    console.log('start', $('#startDate').val());
+  });
+
+  $('#endDate').on('change', (e) => {
+    console.log('end', $('#endDate').val());
+  });
 });

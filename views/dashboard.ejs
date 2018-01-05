@@ -2,7 +2,7 @@
 <body>
   <%- include('navbar') %>
   <div class="container">
-    <h1>Today</h1>
+    <h1>Today, <%= `${new Date().toLocaleDateString()}` %></h1>
     <canvas id='todayChart'></canvas>
     <ul class="collapsible popout">
       <% for (let i = 0; i < meals.length; i++) {
