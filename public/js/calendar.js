@@ -1,6 +1,18 @@
 
 let proteinArray =[45,100,75,30,75, 10,70]
 
+$.ajax({
+  url: '/meals/graph/01012018/05012018',
+  type: 'GET',
+  dataType: 'json'
+})
+.then((result) => {
+  console.log(result);
+})
+.catch((e) => {
+  console.log(e);
+});
+
 $(() => {
   let calendar = document.getElementById('calendar').getContext('2d');
 

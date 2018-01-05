@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
   let meals = [];
   let mealsPromises = [];
   if (req.session.user) {
-    knex('meals').whereRaw(`user_id = ${req.session.user.id} AND date_time::date = now()::date`)
+    knex('meals').whereRaw(`user_id = ${req.session.user.id} AND date_time::date = now()::date`).orderBy('date_time')
     .then((dbMeals) => {
       dbMeals.forEach((meal) => {
         mealsPromises.push(knex('foods').join('foods_meals', 'foods_meals.food_id', 'foods.id').where('foods_meals.meal_id', meal.id)
@@ -23,6 +23,7 @@ router.get('/', (req, res) => {
       });
     }).then(() => {
       Promise.all(mealsPromises).then(() => {
+        // meals.sort((a, b) => a.date_time - b.date_time);
         res.render('dashboard', {meals, user: req.session.user});
       });
     });

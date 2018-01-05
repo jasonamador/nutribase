@@ -52,7 +52,16 @@ $(() => {
           }
         ]
       },
-      object:{}
+      options:{
+        scales: {
+          xAxes: [{
+            ticks: {
+              min: -100,
+              max: 100
+            }
+          }]
+        }
+      }
     });
     /*
       let graphData = [

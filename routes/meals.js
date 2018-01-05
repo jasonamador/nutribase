@@ -60,12 +60,13 @@ router.get('/graph/:date', (req, res) => {
   }
 });
 
-
 router.get('/graph/:from/:to', (req, res) => {
   let meals = [];
   let mealsPromises = [];
+  req.session.user = {};
+  req.session.user.id = 1;
   if (req.session.user) {
-    knex('meals').whereRaw(`user_id = ${req.session.user.id} AND date_time > to_date('${req.params.from}', 'DDMMYYYY') AND date_time < to_date('${req.params.to}', 'DDMMYYYY') + 1 ORDER BY date_time`)
+    knex('meals').select(knex.raw(`label, id, date_time`)).whereRaw(`user_id = ${req.session.user.id} AND date_time > to_date('${req.params.from}', 'DDMMYYYY') AND date_time < to_date('${req.params.to}', 'DDMMYYYY') + 1 ORDER BY date_time`)
     .then((dbMeals) => {
       dbMeals.forEach((meal) => {
         mealsPromises.push(knex('foods').join('foods_meals', 'foods_meals.food_id', 'foods.id').where('foods_meals.meal_id', meal.id)
@@ -97,7 +98,7 @@ router.get('/graph/:from/:to', (req, res) => {
             totals.carbohydrates += food.carbohydrates;
           });
         });
-        res.send({totals, user: req.session.user});
+        res.send(meals);
       });
     });
   } else {
