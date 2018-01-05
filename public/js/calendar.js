@@ -1,6 +1,14 @@
-
-
-
+$.ajax({
+  url: '/meals/graph/01012018/05012018',
+  type: 'GET',
+  dataType: 'json'
+})
+.then((result) => {
+  console.log(result);
+})
+.catch((e) => {
+  console.log(e);
+});
 
 $(() => {
   $('.datepicker').pickadate({

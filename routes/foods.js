@@ -15,7 +15,18 @@ router.get('/', function(req, res){
     });
   })
   .catch(function(error){
-    console.log(error);
+    console.error(error);
+    res.sendStatus(500);
+  });
+});
+
+router.get('/:id', (req, res) => {
+  knex('foods').where('id', req.params.id).first()
+  .then((food) => {
+    res.send(food);
+  })
+  .catch((e) => {
+    console.error(e);
     res.sendStatus(500);
   });
 });

@@ -4,11 +4,14 @@
     Add Meal
   </div>
   <div class="collapsible-body">
-    <form id="mealForm" name="meal-form">
+    <form id="mealForm" name="meal-form" action="/meals" method="POST">
       <div class="row">
         <div class="col s4">
           <input name="mealLabel" id="mealLabel" placeholder="Label"/>
         </div>
+      </div>
+      <div id="addedFoods">
+
       </div>
       <ul class="collapsible popout">
         <li>
@@ -16,52 +19,57 @@
             <i class="medium material-icons">add</i> Add Food
           </div>
           <div class="collapsible-body">
-            <form id="foodForm" name="food-form">
-              <div class="row">
-                <div class="input-field col s4">
-                  <select>
-                    <option value="" disabled selected>Food Group</option>
-                    <option value="Fruits">Fruits</option>
-                  </select>
-                </div>
-                <div class="input-field col s8">
-                  <select>
-                    <option value="" disabled selected>Food Name</option>
-                    <option value="food_id">Apples</option>
-                  </select>
+            <div class="row">
+              <div class="input-field col s4">
+                <select id="foodGroups">
+                  <option disabled selected>Food Group</option>
+                </select>
+              </div>
+              <div class="input-field col s8">
+                <select id="foods">
+                  <option disabled selected>Food Name</option>
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="range-field col s4">
+                <label for="quantity">Quantity</label>
+                <input type="range" id="quantity" min="0" max="5" value="1" step="0.1" />
+              </div>
+              <div class="col s8">
+                <div class="row">
+                  <div class="col s6">
+                    <div>
+                      Calories: <span id="caloriesValue" class="value">0</span>
+                    </div>
+                    <div>
+                      Fat: <span id="fatValue" class="value">0</span>
+                    </div>
+                    <div>
+                      Sugar: <span id="sugarValue" class="value">0</span>
+                    </div>
+                    <div>
+                      Protein: <span id="proteinValue" class="value">0</span>
+                    </div>
+                  </div>
+                  <div class="col s6">
+                    <div>
+                      Carbs: <span id="carbohydratesValue" class="value">0</span>
+                    </div>
+                    <div>
+                      Fiber: <span id="fiberValue" class="value"></span>
+                    </div>
+                    <div>
+                      Bad Fat: <span id="bad_fatValue" class="value"></span>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div class="row">
-                <div class="range-field col s">
-                  <label for="quantity">Quantity</label>
-                  <input type="range" id="quantity" min="0" max="5" value="1" step="0.1" />
-                </div>
-                <div class="col s1">
-                  Calories
-                </div>
-                <div class="col s1">
-                  Fat
-                </div>
-                <div class="col s1">
-                  Sugar
-                </div>
-                <div class="col s1">
-                  Protein
-                </div>
-                <div class="col s1">
-                  Carbs
-                </div>
-                <div class="col s1">
-                  Fiber
-                </div>
-                <div class="col s1">
-                  Bad Fat
-                </div>
-              </div>
-            </form>
-          </div>
-        </li>
-      </ul>
+            </div>
+            <button class="btn" id="submitFood">Add</button>
+          </li>
+        </ul>
+      <input id="mealSubmit" type="submit" class="btn" />
     </form>
   </div>
 </li>

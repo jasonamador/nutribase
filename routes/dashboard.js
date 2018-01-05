@@ -32,4 +32,29 @@ router.get('/', (req, res) => {
   }
 });
 
+router.get('/foods', (req, res) => {
+  let groups;
+  let foods = {};
+  if (req.session.user) {
+    knex('foods').select(knex.raw(`distinct "group"`))
+    .then((grps) => {
+      groups = grps.map((e) => e.group);
+    })
+    .then(() => {
+      knex('foods')
+      .then((fds) => {
+        fds.forEach((e) => {
+          if (!foods[e.group]) {
+            foods[e.group] = [];
+          }
+          foods[e.group].push(e);
+        });
+        res.send({foods, groups});
+      });
+    })
+  } else {
+    res.redirect('/users/login');
+  }
+});
+
 module.exports = router;
