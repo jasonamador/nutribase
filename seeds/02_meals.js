@@ -90,6 +90,79 @@ exports.seed = function(knex, Promise) {
           user_id: 1,
           label: 'Dinner',
         },
+        {
+          user_id: 1,
+          label: 'Breakfast',
+        },
+        {
+          user_id: 1,
+          label: 'Lunch',
+        },
+        {
+          user_id: 1,
+          label: 'Dinner',
+        },
+        {
+          user_id: 1,
+          label: 'Breakfast',
+        },
+        {
+          user_id: 1,
+          label: 'Lunch',
+        },
+        {
+          user_id: 1,
+          label: 'Dinner',
+        },
+        {
+          user_id: 1,
+          label: 'Breakfast',
+        },
+        {
+          user_id: 1,
+          label: 'Lunch',
+        },
+        {
+          user_id: 1,
+          label: 'Dinner',
+        },
+        {
+          user_id: 1,
+          label: 'Breakfast',
+        },
+        {
+          user_id: 1,
+          label: 'Lunch',
+        },
+        {
+          user_id: 1,
+          label: 'Dinner',
+        },
+        {
+          user_id: 1,
+          label: 'Breakfast',
+        },
+        {
+          user_id: 1,
+          label: 'Lunch',
+        },
+        {
+          user_id: 1,
+          label: 'Dinner',
+        },
+        {
+          user_id: 1,
+          label: 'Breakfast',
+        },
+        {
+          user_id: 1,
+          label: 'Lunch',
+        },
+        {
+          user_id: 1,
+          label: 'Dinner',
+        },
+
       ]);
     })
     .then(() => knex.raw(`update meals set date_time = date_time - interval '7 days'`))

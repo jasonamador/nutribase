@@ -63,6 +63,8 @@ router.get('/graph/:date', (req, res) => {
 router.get('/graph/:from/:to', (req, res) => {
   let meals = [];
   let mealsPromises = [];
+
+  // temp for testing
   req.session.user = {};
   req.session.user.id = 1;
   if (req.session.user) {
