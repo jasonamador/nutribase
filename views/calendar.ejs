@@ -1,0 +1,20 @@
+<%- include('head', {scripts: ['/js/calendar.js', 'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js', ]})%>
+<%- include('navbar', {user})%>
+<body>
+  <div class="container">
+    <canvas id="calendar" style:"width: 800px, height:400 "></canvas>
+    <form id="dateRange">
+      <div class="row">
+        <div class="col s6">
+          <label>START</label>
+          <input type="text" class="datepicker" id="startDate" name="startDate">
+        </div>
+        <div class="col s6">
+          <label>END</label>
+          <input type="text" class="datepicker" id="endDate" name="endDate">
+        </div>
+      </div>
+      <input type="submit" class="btn" />
+    </form>
+  </div>
+</body>
