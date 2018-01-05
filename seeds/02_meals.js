@@ -16,6 +16,79 @@ exports.seed = function(knex, Promise) {
           user_id: 1,
           label: 'Dinner',
         },
+        {
+          user_id: 1,
+          label: 'Breakfast',
+        },
+        {
+          user_id: 1,
+          label: 'Lunch',
+        },
+        {
+          user_id: 1,
+          label: 'Dinner',
+        },
+        {
+          user_id: 1,
+          label: 'Breakfast',
+        },
+        {
+          user_id: 1,
+          label: 'Lunch',
+        },
+        {
+          user_id: 1,
+          label: 'Dinner',
+        },
+        {
+          user_id: 1,
+          label: 'Breakfast',
+        },
+        {
+          user_id: 1,
+          label: 'Lunch',
+        },
+        {
+          user_id: 1,
+          label: 'Dinner',
+        },
+        {
+          user_id: 1,
+          label: 'Breakfast',
+        },
+        {
+          user_id: 1,
+          label: 'Lunch',
+        },
+        {
+          user_id: 1,
+          label: 'Dinner',
+        },
+        {
+          user_id: 1,
+          label: 'Breakfast',
+        },
+        {
+          user_id: 1,
+          label: 'Lunch',
+        },
+        {
+          user_id: 1,
+          label: 'Dinner',
+        },
+        {
+          user_id: 1,
+          label: 'Breakfast',
+        },
+        {
+          user_id: 1,
+          label: 'Lunch',
+        },
+        {
+          user_id: 1,
+          label: 'Dinner',
+        },
+
       ]);
     });
 };

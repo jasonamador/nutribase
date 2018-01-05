@@ -1,15 +1,17 @@
-$('.datepicker').pickadate({
-  selectMonths: true, // Creates a dropdown to control month
-  selectYears: 15, // Creates a dropdown of 15 years to control year,
-  today: 'Today',
-  clear: 'Clear',
-  close: 'Ok',
-  closeOnSelect: false // Close upon selecting a date,
-});
 
-let proteinArray =[45,100,75,30,75, 10,70]
+
+
 
 $(() => {
+  $('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 15, // Creates a dropdown of 15 years to control year,
+    today: 'Today',
+    clear: 'Clear',
+    close: 'Ok',
+    closeOnSelect: false // Close upon selecting a date,
+  });
+
   let calendar = document.getElementById('calendar').getContext('2d');
   let dayChart = new Chart(calendar,{
     type:'line',
@@ -31,7 +33,7 @@ $(() => {
         borderColor:'blue',
         fill: false
       },{
-        data: proteinArray,
+        data: [],
         label: 'protein',
         borderColor: 'purple',
         fill: false
