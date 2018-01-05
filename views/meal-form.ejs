@@ -4,11 +4,14 @@
     Add Meal
   </div>
   <div class="collapsible-body">
-    <form id="mealForm" name="meal-form">
+    <form id="mealForm" name="meal-form" action="/meals" method="POST">
       <div class="row">
         <div class="col s4">
           <input name="mealLabel" id="mealLabel" placeholder="Label"/>
         </div>
+      </div>
+      <div id="addedFoods">
+
       </div>
       <ul class="collapsible popout">
         <li>
@@ -63,9 +66,10 @@
                 </div>
               </div>
             </div>
+            <button class="btn" id="submitFood">Add</button>
           </li>
         </ul>
-      <input type="submit" class="btn" />
+      <input id="mealSubmit" type="submit" class="btn" />
     </form>
   </div>
 </li>

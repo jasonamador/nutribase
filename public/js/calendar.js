@@ -1,7 +1,3 @@
-
-
-
-
 $.ajax({
   url: '/meals/graph/01012018/05012018',
   type: 'GET',

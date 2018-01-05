@@ -20,6 +20,7 @@ $(() => {
   let chartCanvas = document.getElementById('todayChart').getContext('2d');
   let chart;
 
+
   // get the graph data and put it in the graph
   $.ajax({
     url: `/meals/graph/${today}`,
@@ -89,6 +90,11 @@ $(() => {
     console.log(e);
   });
 
+  // adding a meal
+  let meal = {
+    foods: []
+  };
+
   // change the foods dropdown
   $('#foodGroups').change((e) => {
     $('#foods').empty().append($('<option disabled selected>Food Name</option>'));
@@ -123,10 +129,39 @@ $(() => {
   })
 
   // change display values on quantity change
+  let quantity = 1;
   $('#quantity').on('input', (e) => {
+    quantity = e.target.value;
     $('.value').each(function() {
       $(this).text((food[this.id.replace('Value', '')] * e.target.value).toFixed(1));
     });
   });
 
+  // submit a food
+  $('#submitFood').click((e) => {
+    e.preventDefault();
+    meal.foods.push({id: food.id, quantity});
+    $('#addedFoods').append($(`<div class="addedFood">${food.name} x ${quantity} = ${(quantity * food.calories).toFixed(1)} calories</div>`));
+    // reset stuff
+    $('.values').text('0');
+    $('#quantity').val(1);
+  });
+
+  // submit the meal object
+  $('#mealSubmit').click((e) => {
+    e.preventDefault();
+    meal.label = $('#mealLabel').val();
+    $.ajax({
+      url: '/meals',
+      type: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify(meal),
+    })
+    .then((response) => {
+      window.location.reload(true);
+    })
+    .catch((e) => {
+      console.log(e);
+    })
+  })
 });
