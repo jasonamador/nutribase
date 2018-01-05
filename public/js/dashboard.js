@@ -145,6 +145,7 @@ $(() => {
     // reset stuff
     $('.values').text('0');
     $('#quantity').val(1);
+    quantity = 1;
   });
 
   // submit the meal object
