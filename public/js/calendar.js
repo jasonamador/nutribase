@@ -21,7 +21,6 @@ $(() => {
   });
 
   let calendar = document.getElementById('calendar').getContext('2d');
-
   let dayChart = new Chart(calendar,{
     type:'line',
     data:{
@@ -60,7 +59,6 @@ $(() => {
         data:[20,40,70,10,100,75,35],
         label:"bad fat",
         borderColor: 'black',
-
         fill: false
       }]
     },
@@ -69,19 +67,19 @@ $(() => {
         yAxes:[{
           ticks:{
             beginAtZero:true,
-            max: 100
+            max: 150
           }
         }]
       }
     }
   })
-
-  $('.datepicker').pickadate({
+});
+ $('.datepicker').pickadate({
     selectMonths: true, // Creates a dropdown to control month
-    selectYears: 15, // Creates a dropdown of 15 years to control year,
-    today: 'Today',
-    clear: 'Clear',
-    close: 'Ok',
+   selectYears: 15, // Creates a dropdown of 15 years to control year,
+   today: 'Today',
+   clear: 'Clear',
+   close: 'Ok',
     closeOnSelect: false // Close upon selecting a date,
   });
 
@@ -92,4 +90,3 @@ $(() => {
   $('#endDate').on('change', (e) => {
     console.log('end', $('#endDate').val());
   });
-});
