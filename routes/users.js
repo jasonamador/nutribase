@@ -77,7 +77,7 @@ router.get('/profile', (req, res) => {
 
 router.get('/profile/edit', (req, res) => {
   if (req.session.user) {
-    res.render('profile-edit', req.session.user);
+    res.render('profile-edit', {user: req.session.user});
   } else {
     res.redirect('/users/login');
   }
@@ -85,7 +85,28 @@ router.get('/profile/edit', (req, res) => {
 
 // update user
 router.patch('/profile/', (req, res) => {
-  res.send(req.body);
+  let user = req.body;
+
+  user.caloriesGoal = !!user.caloriesGoal;
+  user.fiberGoal = !!user.fiberGoal;
+  user.fatGoal = !!user.fatGoal;
+  user.bad_fatGoal = !!user.bad_fatGoal;
+  user.carbohydratesGoal = !!user.carbohydratesGoal;
+  user.sugarGoal = !!user.sugarGoal;
+  user.proteinGoal = !!user.proteinGoal;
+
+  knex('users').update(user).where('id', req.session.user.id)
+  .then(() => {
+    knex('users').where('id', req.session.user.id).first()
+    .then((user) => {
+      req.session.user = user;
+      res.redirect('/users/profile');
+    });
+  })
+  .catch((e) => {
+    console.error(e);
+    res.sendStatus(500);
+  });
 });
 
 module.exports = router;

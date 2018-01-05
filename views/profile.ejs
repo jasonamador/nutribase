@@ -4,53 +4,43 @@
   <div class="container">
     <div class="row">
       <div class="col s6">
-        Name:
-        <%= name; %>
+        <h5>Name: <%= name; %></h5>
       </div>
       <div class="col s6">
-        Email:
-        <%= email; %>
+        <h5>Email: <%= email; %></h5>
       </div>
     </div>
-    <h3>Diet Profile</h3>
+    <h5>Diet Profile</h5>
     <div class="row">
       <div class="col s6">
-        Calories:
-        <%= calories; %>
+        Calories: <%= calories; %> (<%= caloriesGoal ? 'Goal' : 'Limit' %>)
       </div>
       <div class="col s6">
-        Sugar:
-        <%= sugar; %>
+        Sugar: <%= sugar; %> (<%= sugarGoal ? 'Goal' : 'Limit' %>)
       </div>
     </div>
     <div class="row">
       <div class="col s6">
-        Protein:
-        <%= protein; %>
+        Protein: <%= protein; %> (<%= proteinGoal ? 'Goal' : 'Limit' %>)
       </div>
       <div class="col s6">
-        Carbs:
-        <%= carbohydrates; %>
+        Carbs: <%= carbohydrates; %> (<%= carbohydratesGoal ? 'Goal' : 'Limit' %>)
       </div>
     </div>
     <div class="row">
       <div class="col s6">
-        Fiber:
-        <%= fiber; %>
+        Fiber: <%= fiber; %> (<%= fiberGoal ? 'Goal' : 'Limit' %>)
       </div>
       <div class="col s6">
-        Bad Fat:
-        <%= bad_fat; %>
+        Bad Fat: <%= bad_fat; %> (<%= bad_fatGoal ? 'Goal' : 'Limit' %>)
       </div>
     </div>
     <div class="row">
       <div class="col s6">
-        Fat:
-        <%= fat; %>
+        Fat: <%= fat; %> (<%= fatGoal ? 'Goal' : 'Limit' %>)
       </div>
       <div class="col s6">
-        Bad Fat:
-        <%= bad_fat; %>
+        <a href="/users/profile/edit" class="btn waves">Edit</a>
       </div>
     </div>
   </div>

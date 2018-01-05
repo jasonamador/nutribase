@@ -1,4 +1,4 @@
-<%- include('head', {scripts: []}); %>
+<%- include('head', {scripts: ['/js/profile-edit.js'], title: "Edit Profile"}); %>
 <body>
 <%- include('navbar'); %>
 <div class="container">
@@ -8,56 +8,30 @@
     <div class="row">
       <div class="input-field col s4">
         <label for="name">Name</label>
-        <input id="name" name="name" type="text" value="">
+        <input id="name" name="name" type="text" value="<%= user.name; %>">
       </div>
     </div>
     <div class="row">
       <div class="col s4 range-field">
-        <label for="calories">Calories:</label>
-        <input type="range" name="calories" id="calories" min="0" max="5000" step="25" value="">
+        <label for="calories">Calories: <span id="caloriesValue" class="value"><%= user.calories; %></span></label>
+        <input type="range" name="calories" id="calories" min="0" max="5000" step="25" value="<%= user.calories; %>">
       </div>
       <div class="col s2 switch" >
         <label>
           Limit
-          <input type="checkbox" id="caloriesGoal" name="caloriesGoal"/>
-          <span class="lever"></span>
-          Goal
-        </label>
-      </div>
-      <div class="col s4 range-field" value="">
-        <label for="sugar">Sugar:</label>
-        <input id="sugar" name="sugar" type="range" min="0" max="100" step="1">
-      </div>
-      <div class="col s2 switch">
-        <label>
-          Limit
-          <input type="checkbox" name="sugarGoal" id="sugarGoal"/>
-          <span class="lever"></span>
-          Goal
-        </label>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col s4 range-field" value="">
-        <label for="fat">Fat:</label>
-        <input type="range" id="fat" name="fat"min="0" max="100" step="1" value="">
-      </div>
-      <div class="col s2 switch">
-        <label>
-          Limit
-          <input type="checkbox" name="fatGoal" id="fatGoal" />
+          <input type="checkbox" id="caloriesGoal" name="caloriesGoal" <%= user.caloriesGoal ? 'checked' : '' %>"/>
           <span class="lever"></span>
           Goal
         </label>
       </div>
       <div class="col s4 range-field">
-        <label for="protein">Protein:</label>
-        <input type="range" name="protein" id="protein"min="0" max="300" step="5" value="">
+        <label for="sugar">Sugar: <span id="sugarValue" class="value"><%= user.sugar; %></span></label>
+        <input id="sugar" name="sugar" type="range" min="0" max="100" step="1" value="<%= user.sugar; %>">
       </div>
       <div class="col s2 switch">
         <label>
           Limit
-          <input type="checkbox" name="proteinGoal" id="proteinGoal" />
+          <input type="checkbox" name="sugarGoal" id="sugarGoal" <%= user.sugarGoal ? 'checked' : '' %>/>
           <span class="lever"></span>
           Goal
         </label>
@@ -65,25 +39,51 @@
     </div>
     <div class="row">
       <div class="col s4 range-field">
-        <label for="carbohydrates">Carbohydrates</label>
-        <input type="range" id="carbohydrates" name="carbohydrates" min="0" max="200" step="5" value="">
+        <label for="fat">Fat: <span id="fatValue" class="value"><%= user.fat; %></span></label>
+        <input type="range" id="fat" name="fat"min="0" max="100" step="1" value="<%= user.fat; %>">
       </div>
       <div class="col s2 switch">
         <label>
           Limit
-          <input type="checkbox" name="carbohydratesGoal" id="carbohydratesGoal" />
+          <input type="checkbox" name="fatGoal" id="fatGoal" <%= user.fatGoal ? 'checked' : '' %>/>
           <span class="lever"></span>
           Goal
         </label>
       </div>
       <div class="col s4 range-field">
-        <label for="fiber">Fiber:</label>
-        <input type="range" id="fiber" name="fiber" min="0" max="100" step="1" value="">
+        <label for="protein">Protein: <span id="proteinValue" class="value"><%= user.protein; %></span></label>
+        <input type="range" name="protein" id="protein"min="0" max="300" step="5" value="<%= user.protein; %>">
       </div>
       <div class="col s2 switch">
         <label>
           Limit
-          <input type="checkbox" name="fiberGoal" id="fiberGoal" />
+          <input type="checkbox" name="proteinGoal" id="proteinGoal" <%= user.proteinGoal ? 'checked' : '' %>/>
+          <span class="lever"></span>
+          Goal
+        </label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s4 range-field">
+        <label for="carbohydrates">Carbohydrates: <span id="carbohydratesValue" class="value"><%= user.carbohydrates; %></span></label>
+        <input type="range" id="carbohydrates" name="carbohydrates" min="0" max="200" step="5" value="<%= user.carbohydrates; %>">
+      </div>
+      <div class="col s2 switch">
+        <label>
+          Limit
+          <input type="checkbox" name="carbohydratesGoal" id="carbohydratesGoal" <%= user.carbohydratesGoal ? 'checked' : '' %> />
+          <span class="lever"></span>
+          Goal
+        </label>
+      </div>
+      <div class="col s4 range-field">
+        <label for="fiber">Fiber: <span id="fiberValue" class="value"><%= user.fiber; %></span></label>
+        <input type="range" id="fiber" name="fiber" min="0" max="100" step="1" value="<%= user.fiber; %>">
+      </div>
+      <div class="col s2 switch">
+        <label>
+          Limit
+          <input type="checkbox" name="fiberGoal" id="fiberGoal" <%= user.fiberGoal ? 'checked' : '' %> />
           <span class="lever"></span>
           Goal
         </label>
@@ -91,13 +91,13 @@
     </div>
     <div class="row">
       <div class="col s4">
-        <label for="bad_fat">Bad Fat:</label>
-        <input type="range" id="bad_fat" name="bad_fat" min="0" max="100" step="1" value="">
+        <label for="bad_fat">Bad Fat: <span id="bad_fatValue" class="value"><%= user.bad_fat; %></span></label>
+        <input type="range" id="bad_fat" name="bad_fat" min="0" max="100" step="1" value="<%= user.bad_fat; %>">
       </div>
       <div class="col s2 switch">
         <label>
           Limit
-          <input type="checkbox" name="bad_fatGoal" id="bad_fatGoal" />
+          <input type="checkbox" name="bad_fatGoal" id="bad_fatGoal" <%= user.bad_fatGoal ? 'checked' : '' %>/>
           <span class="lever"></span>
           Goal
         </label>
@@ -105,6 +105,5 @@
       <button class="btn" type="submit">Submit</button>
     </div>
   </form>
-</div>
 </body>
 </html>
