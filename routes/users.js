@@ -43,10 +43,10 @@ router.post('/signup', (req, res) => {
       email: req.body.signupEmail,
       password: hashedPassword,
     };
-    knex('users').insert(user)
-    .then((user) => {
-      req.session.user = user;
-      res.redirect('/users/profile');
+    knex('users').returning('*').insert(user)
+    .then((newUser) => {
+      req.session.user = newUser[0];
+      res.redirect('/users/profile/edit');
     });
   })
   .catch((e) => {
