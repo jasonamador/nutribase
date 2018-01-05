@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
   let meals = [];
   let mealsPromises = [];
   if (req.session.user) {
-    knex('meals').whereRaw(`user_id = ${req.session.user.id} AND date_time > now()::date - 1`)
+    knex('meals').whereRaw(`user_id = ${req.session.user.id} AND date_time::date = now()::date`)
     .then((dbMeals) => {
       dbMeals.forEach((meal) => {
         mealsPromises.push(knex('foods').join('foods_meals', 'foods_meals.food_id', 'foods.id').where('foods_meals.meal_id', meal.id)

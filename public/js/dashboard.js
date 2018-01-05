@@ -11,7 +11,6 @@ if(mm<10){
 }
 today = dd+mm+yyyy;
 
-
 $(() => {
   $('.collapsible').collapsible();
   $('select').material_select();
@@ -25,7 +24,6 @@ $(() => {
     dataType: 'json'
   })
   .then((result) => {
-    console.log(result.user);
     let graphData = [
       (result.totals.calories / result.user.calories) * 100 - 100,
       (result.totals.fat / result.user.fat) * 100 - 100,

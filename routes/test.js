@@ -4,11 +4,8 @@ const knex = require('knex')(config);
 const express = require('express');
 const router = express.Router();
 
-
-
 router.get('/', function(req, res){
-  res.render('calender');
+  res.render('calendar', {user: req.session.user});
 })
-
 
 module.exports = router;
