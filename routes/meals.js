@@ -4,7 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const router = express.Router();
 
-router.use(bodyParser.urlencoded());
+router.use(bodyParser.json());
 
 router.get('/', (req, res) => {
   let meal;
@@ -106,6 +106,29 @@ router.get('/graph/:from/:to', (req, res) => {
   } else {
     res.sendStatus(500);
   }
+});
+
+router.post('/', (req, res) => {
+  let foods = req.body.foods;
+  let meal = {
+    label: req.body.label,
+    user_id: req.session.user.id
+  };
+  knex('meals').insert(meal).returning('id')
+  .then((mealId) => {
+    let foods_meals = foods.map((e) => {
+      return {food_id: e.id, quantity: e.quantity, meal_id: mealId[0]}
+    });
+    console.log(mealId);
+    return knex('foods_meals').insert(foods_meals);
+  })
+  .then(() => {
+    res.sendStatus(200);
+  })
+  .catch((e) => {
+    console.error(e);
+    res.sendStatus(500);
+  });
 });
 
 module.exports = router;
