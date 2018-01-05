@@ -23,7 +23,7 @@ router.get('/', (req, res) => {
       });
     }).then(() => {
       Promise.all(mealsPromises).then(() => {
-        // meals.sort((a, b) => a.date_time - b.date_time);
+        meals.sort((a, b) => a.date_time - b.date_time);
         res.render('dashboard', {meals, user: req.session.user});
       });
     });

@@ -7,7 +7,7 @@ exports.up = function(knex, Promise) {
     table.timestamp('member_since').defaultTo(knex.fn.now());
     table.timestamp('last_login').defaultTo(knex.fn.now());
     table.integer('calories');
-    table.boolean('calorieGoal').defaultTo(false);
+    table.boolean('caloriesGoal').defaultTo(false);
     table.integer('sugar');
     table.boolean('sugarGoal').defaultTo(false);
     table.integer('fat');
