@@ -20,7 +20,6 @@ $(() => {
   let chartCanvas = document.getElementById('todayChart').getContext('2d');
   let chart;
 
-
   // get the graph data and put it in the graph
   $.ajax({
     url: `/meals/graph/${today}`,
@@ -36,8 +35,17 @@ $(() => {
       (result.totals.sugar / result.user.sugar) * 100 - 100,
       (result.totals.carbohydrates / result.user.carbohydrates) * 100 - 100,
       (result.totals.fiber / result.user.fiber) * 100 - 100];
-    let graphBackgrounds = graphData.map((e) => {
-      return `rgba(${Math.floor(255 * (e + 100) / 100) }, ${ 255 - Math.floor(255 * (e + 100) / 100) }, 0, 0.5)`
+    let graphPolarities = [
+      result.user.caloriesGoal,
+      result.user.fatGoal,
+      result.user.bad_fatGoal,
+      result.user.proteinGoal,
+      result.user.sugarGoal,
+      result.user.carbohydratesGoal,
+      result.user.fiberGoal
+    ];
+    let graphBackgrounds = graphData.map((e, i) => {
+      return graphPolarities[i] ? `rgba(${ 255 - Math.floor(255 * (e + 100) / 100) }, ${Math.floor(255 * (e + 100) / 100) }, 0, 0.5)` : `rgba(${Math.floor(255 * (e + 100) / 100) }, ${ 255 - Math.floor(255 * (e + 100) / 100) }, 0, 0.5)`
     });
     chart = new Chart(chartCanvas,{
       type:'horizontalBar',

@@ -98,7 +98,7 @@ router.patch('/profile/', (req, res) => {
   knex('users').update(user).where('id', req.session.user.id).returning('*')
   .then((updatedUser) => {
     req.session.user = updatedUser[0];
-    res.redirect('/users/profile');
+    res.redirect('/users/dashboard');
   })
   .catch((e) => {
     console.error(e);
