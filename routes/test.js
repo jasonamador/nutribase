@@ -1,5 +1,5 @@
 'use strict'
-const config = require('../knexfile')['development'];
+const config = require('../knexfile')[process.env.ENVIRONMENT || 'development'];
 const knex = require('knex')(config);
 const express = require('express');
 const router = express.Router();
