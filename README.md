@@ -1,26 +1,27 @@
 # NutriBase
-NutriBase is being created to help people set nutritional goals, easily track their food intake, and view and assess their progress over time in meaningful ways using interactive graphs and tables.
+NutriBase enables users to set their own nutritional goals, then assemble meals from food profiles from the [USDA Food Composition Databases](https://ndb.nal.usda.gov/ndb/) which enables them to track their progress for the day and over time.  The project is still in development.
 
-## Base User Experience
-* As a newcomer I should be able to create a new user
-  - email
-  - password
-  - goals
-  - name: fat, polarity: true (true = goal, false = limit)
-  
-GET /users/login - get login form
-POST /users/login - login
-POST /users/logout - logout
-GET /users/profile - get a user profile
-POST /users/profile - create a user profile
-PATCH /users/profile - update a user profile
+## User Experience
 
-GET /meals/dates/:day - get the meals from a single day
-GET /meals/dates/:from/:to - get the meals in a given date range
+### Signup/Signin
+When you first hit the app you are given a simple sign-up/sign-in form.
+![Signup/Signin Form Screenshot](/screenshots/login-signup.png)
 
-GET /dashboard - pulls the dashboard view which will make a bunch of ajax calls to get the user profile and meals for the day
-GET /dashboard/details
+### Edit Profile
+If you are a new user and the form is valid, you are redirected to the Edit Profile page where you can set up your diet profile.
+![Edit Profile Screenshot](/screenshots/edit-profile.png)
 
-GET /foods/:id - gets a single food profile
-GET /foods/group/:group - gets all the foods in the specified group
-GET /foods - get all the foods
+### Dashboard
+After you have chosen your profile or login as a user, you are taken to the Dashboard where you can create meals and see where you are in your intake for the day.
+![Dashboard Screenshot](/screenshots/dashboard.png)
+
+### Adding a Meal
+From the dashboard view, you can add a meal and add foods to that meal.
+![Adding Meal Screenshot](/screenshots/create-meal.png)
+
+## Future Plans
+This is an ongoing project, and there are several features and changes to come:
+* add a food search from the USDA database to add to ours
+* create the ability to view line graphs for the user's performance over an arbitrary number of days
+* convert the front-end to an Angular application
+* possibly more metrics
